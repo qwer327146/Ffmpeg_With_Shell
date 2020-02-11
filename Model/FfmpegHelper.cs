@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Ffmpeg_With_Shell
 {
-    class Ffmpeg
+    class FfmpegHelper
     {
-        private string ffmpegPath;
+        private string ffmpegPath;  //ffmpeg.exe路径
         private string ffplayPath;
         private string ffprobePath;
 
-        private string[] arguments;
+        private string arguments;   //参数
                 
 
         public string FfmpegPath { get => ffmpegPath; set => ffmpegPath = value; }
         public string FfplayPath { get => ffplayPath; set => ffplayPath = value; }
         public string FfprobePath { get => ffprobePath; set => ffprobePath = value; }
-        public string[] Arguments { get => arguments; set => arguments = value; }
+        public string Arguments { get => arguments; set => arguments = value; }
     }
 }

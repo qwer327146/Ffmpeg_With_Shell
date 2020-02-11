@@ -31,20 +31,21 @@
             this.splitContainer_Main = new System.Windows.Forms.SplitContainer();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.tabPage_AssConverter = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox_Output = new System.Windows.Forms.TextBox();
+            this.button_AssConvert = new System.Windows.Forms.Button();
             this.groupBox_AssConverter = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxAssPath = new System.Windows.Forms.TextBox();
-            this.button_AssPathSelector = new System.Windows.Forms.Button();
-            this.textBox_MovFps = new System.Windows.Forms.TextBox();
-            this.textBox_MovTime = new System.Windows.Forms.TextBox();
             this.button_MovPathSelector = new System.Windows.Forms.Button();
             this.textBox_MovPath = new System.Windows.Forms.TextBox();
-            this.button_AssConvert = new System.Windows.Forms.Button();
+            this.textBox_MovTime = new System.Windows.Forms.TextBox();
+            this.textBox_MovFps = new System.Windows.Forms.TextBox();
+            this.button_AssPathSelector = new System.Windows.Forms.Button();
+            this.textBox_AssPath = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_Output = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
             this.splitContainer_Main.Panel1.SuspendLayout();
             this.splitContainer_Main.Panel2.SuspendLayout();
@@ -94,24 +95,15 @@
             this.tabPage_AssConverter.Text = "Ass字幕转换";
             this.tabPage_AssConverter.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // button_AssConvert
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBox_Output
-            // 
-            this.textBox_Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_Output.Location = new System.Drawing.Point(0, 0);
-            this.textBox_Output.Multiline = true;
-            this.textBox_Output.Name = "textBox_Output";
-            this.textBox_Output.Size = new System.Drawing.Size(449, 450);
-            this.textBox_Output.TabIndex = 0;
+            this.button_AssConvert.Location = new System.Drawing.Point(3, 221);
+            this.button_AssConvert.Name = "button_AssConvert";
+            this.button_AssConvert.Size = new System.Drawing.Size(333, 23);
+            this.button_AssConvert.TabIndex = 1;
+            this.button_AssConvert.Text = "转换";
+            this.button_AssConvert.UseVisualStyleBackColor = true;
+            this.button_AssConvert.Click += new System.EventHandler(this.button_AssConvert_Click);
             // 
             // groupBox_AssConverter
             // 
@@ -120,7 +112,7 @@
             this.groupBox_AssConverter.Controls.Add(this.textBox_MovTime);
             this.groupBox_AssConverter.Controls.Add(this.textBox_MovFps);
             this.groupBox_AssConverter.Controls.Add(this.button_AssPathSelector);
-            this.groupBox_AssConverter.Controls.Add(this.textBoxAssPath);
+            this.groupBox_AssConverter.Controls.Add(this.textBox_AssPath);
             this.groupBox_AssConverter.Controls.Add(this.label4);
             this.groupBox_AssConverter.Controls.Add(this.label3);
             this.groupBox_AssConverter.Controls.Add(this.label2);
@@ -133,32 +125,58 @@
             this.groupBox_AssConverter.TabStop = false;
             this.groupBox_AssConverter.Text = "设置参数";
             // 
-            // label1
+            // button_MovPathSelector
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ass文件路径：";
+            this.button_MovPathSelector.Location = new System.Drawing.Point(289, 181);
+            this.button_MovPathSelector.Name = "button_MovPathSelector";
+            this.button_MovPathSelector.Size = new System.Drawing.Size(38, 23);
+            this.button_MovPathSelector.TabIndex = 9;
+            this.button_MovPathSelector.Text = "……";
+            this.button_MovPathSelector.UseVisualStyleBackColor = true;
+            this.button_MovPathSelector.Click += new System.EventHandler(this.button_MovPathSelector_Click);
             // 
-            // label2
+            // textBox_MovPath
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "帧率（例：30）：";
+            this.textBox_MovPath.Location = new System.Drawing.Point(8, 182);
+            this.textBox_MovPath.Name = "textBox_MovPath";
+            this.textBox_MovPath.Size = new System.Drawing.Size(275, 21);
+            this.textBox_MovPath.TabIndex = 8;
             // 
-            // label3
+            // textBox_MovTime
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(287, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "时间（格式：时:分:秒.毫秒，例：00:03:25.000）：";
+            this.textBox_MovTime.Location = new System.Drawing.Point(8, 133);
+            this.textBox_MovTime.Name = "textBox_MovTime";
+            this.textBox_MovTime.Size = new System.Drawing.Size(319, 21);
+            this.textBox_MovTime.TabIndex = 7;
+            this.textBox_MovTime.Text = "00:00:00.000";
+            // 
+            // textBox_MovFps
+            // 
+            this.textBox_MovFps.Location = new System.Drawing.Point(8, 81);
+            this.textBox_MovFps.Name = "textBox_MovFps";
+            this.textBox_MovFps.Size = new System.Drawing.Size(319, 21);
+            this.textBox_MovFps.TabIndex = 6;
+            this.textBox_MovFps.Text = "30";
+            // 
+            // button_AssPathSelector
+            // 
+            this.button_AssPathSelector.Location = new System.Drawing.Point(289, 31);
+            this.button_AssPathSelector.Name = "button_AssPathSelector";
+            this.button_AssPathSelector.Size = new System.Drawing.Size(38, 23);
+            this.button_AssPathSelector.TabIndex = 5;
+            this.button_AssPathSelector.Text = "……";
+            this.button_AssPathSelector.UseVisualStyleBackColor = true;
+            this.button_AssPathSelector.Click += new System.EventHandler(this.button_AssPathSelector_Click);
+            // 
+            // textBox_AssPath
+            // 
+            this.textBox_AssPath.AllowDrop = true;
+            this.textBox_AssPath.Location = new System.Drawing.Point(8, 32);
+            this.textBox_AssPath.Name = "textBox_AssPath";
+            this.textBox_AssPath.Size = new System.Drawing.Size(275, 21);
+            this.textBox_AssPath.TabIndex = 4;
+            this.textBox_AssPath.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxAssPath_DragDrop);
+            this.textBox_AssPath.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxAssPath_DragEnter);
             // 
             // label4
             // 
@@ -169,60 +187,51 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "mov输出路径：";
             // 
-            // textBoxAssPath
+            // label3
             // 
-            this.textBoxAssPath.Location = new System.Drawing.Point(8, 32);
-            this.textBoxAssPath.Name = "textBoxAssPath";
-            this.textBoxAssPath.Size = new System.Drawing.Size(275, 21);
-            this.textBoxAssPath.TabIndex = 4;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(287, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "时间（格式：时:分:秒.毫秒，例：00:03:25.000）：";
             // 
-            // button_AssPathSelector
+            // label2
             // 
-            this.button_AssPathSelector.Location = new System.Drawing.Point(289, 31);
-            this.button_AssPathSelector.Name = "button_AssPathSelector";
-            this.button_AssPathSelector.Size = new System.Drawing.Size(38, 23);
-            this.button_AssPathSelector.TabIndex = 5;
-            this.button_AssPathSelector.Text = "……";
-            this.button_AssPathSelector.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "帧率（例：30）：";
             // 
-            // textBox_MovFps
+            // label1
             // 
-            this.textBox_MovFps.Location = new System.Drawing.Point(8, 81);
-            this.textBox_MovFps.Name = "textBox_MovFps";
-            this.textBox_MovFps.Size = new System.Drawing.Size(319, 21);
-            this.textBox_MovFps.TabIndex = 6;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ass文件路径：";
             // 
-            // textBox_MovTime
+            // tabPage2
             // 
-            this.textBox_MovTime.Location = new System.Drawing.Point(8, 133);
-            this.textBox_MovTime.Name = "textBox_MovTime";
-            this.textBox_MovTime.Size = new System.Drawing.Size(319, 21);
-            this.textBox_MovTime.TabIndex = 7;
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(339, 424);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button_MovPathSelector
+            // textBox_Output
             // 
-            this.button_MovPathSelector.Location = new System.Drawing.Point(289, 181);
-            this.button_MovPathSelector.Name = "button_MovPathSelector";
-            this.button_MovPathSelector.Size = new System.Drawing.Size(38, 23);
-            this.button_MovPathSelector.TabIndex = 9;
-            this.button_MovPathSelector.Text = "……";
-            this.button_MovPathSelector.UseVisualStyleBackColor = true;
-            // 
-            // textBox_MovPath
-            // 
-            this.textBox_MovPath.Location = new System.Drawing.Point(8, 182);
-            this.textBox_MovPath.Name = "textBox_MovPath";
-            this.textBox_MovPath.Size = new System.Drawing.Size(275, 21);
-            this.textBox_MovPath.TabIndex = 8;
-            // 
-            // button_AssConvert
-            // 
-            this.button_AssConvert.Location = new System.Drawing.Point(3, 221);
-            this.button_AssConvert.Name = "button_AssConvert";
-            this.button_AssConvert.Size = new System.Drawing.Size(333, 23);
-            this.button_AssConvert.TabIndex = 1;
-            this.button_AssConvert.Text = "转换";
-            this.button_AssConvert.UseVisualStyleBackColor = true;
+            this.textBox_Output.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_Output.Location = new System.Drawing.Point(0, 0);
+            this.textBox_Output.Multiline = true;
+            this.textBox_Output.Name = "textBox_Output";
+            this.textBox_Output.Size = new System.Drawing.Size(449, 450);
+            this.textBox_Output.TabIndex = 0;
             // 
             // Form_Main
             // 
@@ -253,7 +262,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox textBox_Output;
         private System.Windows.Forms.GroupBox groupBox_AssConverter;
-        private System.Windows.Forms.TextBox textBoxAssPath;
+        private System.Windows.Forms.TextBox textBox_AssPath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -264,6 +273,7 @@
         private System.Windows.Forms.TextBox textBox_MovPath;
         private System.Windows.Forms.TextBox textBox_MovTime;
         private System.Windows.Forms.TextBox textBox_MovFps;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }
 
