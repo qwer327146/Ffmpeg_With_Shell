@@ -139,19 +139,42 @@ namespace Ffmpeg_With_Shell
             mProcess.StartInfo.Arguments = ffmpegHelper.Arguments;  //参数
             mProcess.StartInfo.UseShellExecute = false; //不使用系统外壳
             mProcess.StartInfo.RedirectStandardError= true;   //ffmpeg.exe错误输出流
-            mProcess.StartInfo.CreateNoWindow = true;
-           
+            mProcess.StartInfo.CreateNoWindow = true;           
+                       
             mProcess.Start();   //启动线程
-            while(!mProcess.StandardError.EndOfStream)
+
+            while (!mProcess.StandardError.EndOfStream)
             {
-                textBox_Output.AppendText(mProcess.StandardError.ReadLine() + "\r\n");
+                textBox_Output.AppendText(String.Format("{0}{1}", mProcess.StandardError.ReadLine(), "\r\n"));
             }
-            
+
             mProcess.WaitForExit(); //等待进程结束
             mProcess.Close();
             mProcess.Dispose(); //释放资源            
         }
 
-        
+        private void Output(object sender, DataReceivedEventArgs e)
+        {
+            if(!String.IsNullOrEmpty(e.Data))
+            {
+                this.SetText(e.Data);
+            }
+        }
+
+        delegate void SetTextCallback(string text);
+
+        private void SetText(string text)
+        {
+            if(this.textBox_Output.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.textBox_Output.AppendText(text);
+                this.textBox_Output.Refresh();
+            }
+        }
     }
 }
