@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -101,9 +102,14 @@ namespace Ffmpeg_With_Shell
                 MessageBox.Show("参数不能为空！");
                 return;
             }
+            button_AssConvert.Enabled = false;
             textBox_Output.Text = "";
             SetSubinfo();
-            ConvertAss();
+            
+            //启动子线程转换
+            ThreadStart childref = new ThreadStart(ConvertAss);
+            Thread childThread = new Thread(childref);
+            childThread.Start();
         }
 
         private void SetSubinfo()
@@ -145,20 +151,17 @@ namespace Ffmpeg_With_Shell
 
             while (!mProcess.StandardError.EndOfStream)
             {
-                textBox_Output.AppendText(String.Format("{0}{1}", mProcess.StandardError.ReadLine(), "\r\n"));
+                //textBox_Output.AppendText(String.Format("{0}{1}", mProcess.StandardError.ReadLine(), "\r\n"));
+                this.SetText(String.Format("{0}{1}", mProcess.StandardError.ReadLine(), "\r\n"));               
             }
 
             mProcess.WaitForExit(); //等待进程结束
             mProcess.Close();
-            mProcess.Dispose(); //释放资源            
-        }
-
-        private void Output(object sender, DataReceivedEventArgs e)
-        {
-            if(!String.IsNullOrEmpty(e.Data))
+            mProcess.Dispose(); //释放资源          
+            button_AssConvert.BeginInvoke(new Action(() =>
             {
-                this.SetText(e.Data);
-            }
+                button_AssConvert.Enabled = true;
+            }));
         }
 
         delegate void SetTextCallback(string text);
@@ -175,6 +178,6 @@ namespace Ffmpeg_With_Shell
                 this.textBox_Output.AppendText(text);
                 this.textBox_Output.Refresh();
             }
-        }
+        }        
     }
 }
