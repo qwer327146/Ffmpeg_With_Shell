@@ -47,6 +47,10 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox_Output = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_ResX = new System.Windows.Forms.TextBox();
+            this.textBox_ResY = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
             this.splitContainer_Main.Panel1.SuspendLayout();
             this.splitContainer_Main.Panel2.SuspendLayout();
@@ -99,7 +103,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 250);
+            this.button1.Location = new System.Drawing.Point(3, 397);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(333, 23);
             this.button1.TabIndex = 2;
@@ -109,7 +113,7 @@
             // 
             // button_AssConvert
             // 
-            this.button_AssConvert.Location = new System.Drawing.Point(3, 221);
+            this.button_AssConvert.Location = new System.Drawing.Point(3, 368);
             this.button_AssConvert.Name = "button_AssConvert";
             this.button_AssConvert.Size = new System.Drawing.Size(333, 23);
             this.button_AssConvert.TabIndex = 1;
@@ -119,6 +123,10 @@
             // 
             // groupBox_AssConverter
             // 
+            this.groupBox_AssConverter.Controls.Add(this.label6);
+            this.groupBox_AssConverter.Controls.Add(this.textBox_ResY);
+            this.groupBox_AssConverter.Controls.Add(this.textBox_ResX);
+            this.groupBox_AssConverter.Controls.Add(this.label5);
             this.groupBox_AssConverter.Controls.Add(this.button_MovPathSelector);
             this.groupBox_AssConverter.Controls.Add(this.textBox_MovPath);
             this.groupBox_AssConverter.Controls.Add(this.textBox_MovTime);
@@ -132,7 +140,7 @@
             this.groupBox_AssConverter.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox_AssConverter.Location = new System.Drawing.Point(3, 3);
             this.groupBox_AssConverter.Name = "groupBox_AssConverter";
-            this.groupBox_AssConverter.Size = new System.Drawing.Size(333, 212);
+            this.groupBox_AssConverter.Size = new System.Drawing.Size(333, 359);
             this.groupBox_AssConverter.TabIndex = 0;
             this.groupBox_AssConverter.TabStop = false;
             this.groupBox_AssConverter.Text = "设置参数";
@@ -242,8 +250,47 @@
             this.textBox_Output.Location = new System.Drawing.Point(0, 0);
             this.textBox_Output.Multiline = true;
             this.textBox_Output.Name = "textBox_Output";
+            this.textBox_Output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Output.Size = new System.Drawing.Size(449, 450);
             this.textBox_Output.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 217);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(143, 12);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "分辨率（默认1920x1080）";
+            // 
+            // textBox_ResX
+            // 
+            this.textBox_ResX.Location = new System.Drawing.Point(8, 232);
+            this.textBox_ResX.Name = "textBox_ResX";
+            this.textBox_ResX.Size = new System.Drawing.Size(81, 21);
+            this.textBox_ResX.TabIndex = 11;
+            this.textBox_ResX.Text = "1920";
+            this.textBox_ResX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_ResX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_ResX_KeyPress);
+            // 
+            // textBox_ResY
+            // 
+            this.textBox_ResY.Location = new System.Drawing.Point(113, 232);
+            this.textBox_ResY.Name = "textBox_ResY";
+            this.textBox_ResY.Size = new System.Drawing.Size(81, 21);
+            this.textBox_ResY.TabIndex = 12;
+            this.textBox_ResY.Text = "1080";
+            this.textBox_ResY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_ResY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_ResY_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(95, 235);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(11, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "x";
             // 
             // Form_Main
             // 
@@ -288,6 +335,10 @@
         private System.Windows.Forms.TextBox textBox_MovFps;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox_ResY;
+        private System.Windows.Forms.TextBox textBox_ResX;
+        private System.Windows.Forms.Label label5;
     }
 }
 

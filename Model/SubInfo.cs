@@ -12,10 +12,14 @@ namespace Ffmpeg_With_Shell.Model
         private string outputPath;  //mov输出路径
         private string fps;         //转换参数中的帧率
         private string time;        //转换参数中的时间
+        private string resX;        //分辨率
+        private string resY;
 
         public string InputPath { get => inputPath; set => inputPath = value; }
         public string OutputPath { get => outputPath; set => outputPath = value; }
         public string Fps { get => fps; set => fps = value; }
         public string Time { get => time; set => time = value; }
+        public string ResX { get => resX; set => resX = value; }
+        public string ResY { get => resY; set => resY = value; }
     }
 }

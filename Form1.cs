@@ -119,6 +119,8 @@ namespace Ffmpeg_With_Shell
             subinfo.Fps = textBox_MovFps.Text;
             subinfo.Time = textBox_MovTime.Text;
             subinfo.OutputPath = textBox_MovPath.Text;
+            subinfo.ResX = textBox_ResX.Text;
+            subinfo.ResY = textBox_ResY.Text;
             //subinfo.InputPath = textBox_AssPath.Text;
             //复制字幕文件到临时目录，subtitles无法接受绝对路径
             localFilePath = textBox_AssPath.Text;
@@ -134,8 +136,13 @@ namespace Ffmpeg_With_Shell
             subinfo.InputPath = "temp.ass";
 
             //设置ffmpeg转换参数
-            ffmpegHelper.Arguments = String.Format("-y -f lavfi -i \"color = color = black@0.0:size = 1920x1080, format = rgba, subtitles ={0}:alpha = 1, fps = {1}\" -c:v png -t \"{2}\" {3} -stats",
-                subinfo.InputPath, subinfo.Fps, subinfo.Time, subinfo.OutputPath);
+            ffmpegHelper.Arguments = String.Format("-y -f lavfi -i \"color = color = black@0.0:size = {0}x{1}, format = rgba, subtitles ={2}:alpha = 1, fps = {3}\" -c:v png -t \"{4}\" {5} -stats",
+                subinfo.ResX,           //分辨率
+                subinfo.ResY,           //分辨率
+                subinfo.InputPath,      //ass文件路径
+                subinfo.Fps,            //帧数
+                subinfo.Time,           //时间
+                subinfo.OutputPath);    //输出路径
             Clipboard.SetText(ffmpegHelper.Arguments);
             
         }
@@ -202,6 +209,22 @@ namespace Ffmpeg_With_Shell
                 childThread.Abort();
                 mProcess.Kill();
             }           
+        }
+
+        private void textBox_ResX_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!Char.IsNumber(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_ResY_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
