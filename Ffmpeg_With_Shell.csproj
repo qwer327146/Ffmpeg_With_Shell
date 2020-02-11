@@ -46,7 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ffmpeg.cs" />
+    <Compile Include="Model\Ass.cs" />
+    <Compile Include="Model\Ffmpeg.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
