@@ -100,7 +100,8 @@ namespace Ffmpeg_With_Shell
             {
                 MessageBox.Show("参数不能为空！");
                 return;
-            }            
+            }
+            textBox_Output.Text = "";
             SetSubinfo();
             ConvertAss();
         }
@@ -111,9 +112,13 @@ namespace Ffmpeg_With_Shell
             subinfo.Time = textBox_MovTime.Text;
             subinfo.OutputPath = textBox_MovPath.Text;
 
-            //复制字幕文件到临时目录
+            //复制字幕文件到临时目录，subtitles无法接受绝对路径
             localFilePath = textBox_AssPath.Text;
             tempFilePath = String.Format("{0}{1}", System.AppDomain.CurrentDomain.BaseDirectory,"\\bin\\temp.ass");
+            if(File.Exists(tempFilePath))
+            {
+                File.Delete(tempFilePath);
+            }
             if(File.Exists(localFilePath))
             {
                 File.Copy(localFilePath, tempFilePath, true);
@@ -135,39 +140,18 @@ namespace Ffmpeg_With_Shell
             mProcess.StartInfo.UseShellExecute = false; //不使用系统外壳
             mProcess.StartInfo.RedirectStandardError= true;   //ffmpeg.exe错误输出流
             mProcess.StartInfo.CreateNoWindow = true;
-            mProcess.ErrorDataReceived += new DataReceivedEventHandler(Output); //流处理过程转移到输出方法
-            mProcess.Start();   //启动线程            
-            mProcess.BeginErrorReadLine();  //异步读取
+           
+            mProcess.Start();   //启动线程
+            while(!mProcess.StandardError.EndOfStream)
+            {
+                textBox_Output.AppendText(mProcess.StandardError.ReadLine() + "\r\n");
+            }
+            
             mProcess.WaitForExit(); //等待进程结束
             mProcess.Close();
-            mProcess.Dispose(); //释放资源
-
-            File.Delete(tempFilePath);
+            mProcess.Dispose(); //释放资源            
         }
 
-        private void Output(object sender, DataReceivedEventArgs e)
-        {
-            if(!String.IsNullOrEmpty(e.Data))
-            {
-                //this.SetText(e.Data);                
-            }            
-        }
-
-        //委托方法
-        delegate void SetTextCallback(string text);
-        private void SetText(string text)
-        {
-            if(this.textBox_Output.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.textBox_Output.AppendText(text);
-                this.textBox_Output.Refresh();
-            }
-        }
         
     }
 }
