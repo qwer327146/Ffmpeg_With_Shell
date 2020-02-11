@@ -21,6 +21,8 @@ namespace Ffmpeg_With_Shell
         private Process mProcess;
         private string localFilePath;
         private string tempFilePath;
+        private ThreadStart childref;
+        private Thread childThread;
 
         public Form_Main()
         {
@@ -107,8 +109,8 @@ namespace Ffmpeg_With_Shell
             SetSubinfo();
             
             //启动子线程转换
-            ThreadStart childref = new ThreadStart(ConvertAss);
-            Thread childThread = new Thread(childref);
+            childref = new ThreadStart(ConvertAss);
+            childThread = new Thread(childref);
             childThread.Start();
         }
 
@@ -178,6 +180,28 @@ namespace Ffmpeg_With_Shell
                 this.textBox_Output.AppendText(text);
                 this.textBox_Output.Refresh();
             }
-        }        
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(childThread == null || !childThread.IsAlive)
+            {
+                return;
+            }
+            childThread.Abort();    //中止子线程
+            childref = null;    
+            childThread = null; 
+            mProcess.Kill();    //杀死进程
+            button_AssConvert.Enabled = true;
+        }
+
+        private void Form_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(childThread != null && childThread.IsAlive)
+            {
+                childThread.Abort();
+                mProcess.Kill();
+            }           
+        }
     }
 }

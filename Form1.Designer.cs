@@ -31,6 +31,7 @@
             this.splitContainer_Main = new System.Windows.Forms.SplitContainer();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.tabPage_AssConverter = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.button_AssConvert = new System.Windows.Forms.Button();
             this.groupBox_AssConverter = new System.Windows.Forms.GroupBox();
             this.button_MovPathSelector = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             // 
             // tabPage_AssConverter
             // 
+            this.tabPage_AssConverter.Controls.Add(this.button1);
             this.tabPage_AssConverter.Controls.Add(this.button_AssConvert);
             this.tabPage_AssConverter.Controls.Add(this.groupBox_AssConverter);
             this.tabPage_AssConverter.Location = new System.Drawing.Point(4, 22);
@@ -94,6 +96,16 @@
             this.tabPage_AssConverter.TabIndex = 0;
             this.tabPage_AssConverter.Text = "Ass字幕转换";
             this.tabPage_AssConverter.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 250);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(333, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "停止";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_AssConvert
             // 
@@ -241,6 +253,7 @@
             this.Controls.Add(this.splitContainer_Main);
             this.Name = "Form_Main";
             this.Text = "ffmpeg助手";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Main_FormClosing);
             this.splitContainer_Main.Panel1.ResumeLayout(false);
             this.splitContainer_Main.Panel2.ResumeLayout(false);
             this.splitContainer_Main.Panel2.PerformLayout();
@@ -274,6 +287,7 @@
         private System.Windows.Forms.TextBox textBox_MovTime;
         private System.Windows.Forms.TextBox textBox_MovFps;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button button1;
     }
 }
 
