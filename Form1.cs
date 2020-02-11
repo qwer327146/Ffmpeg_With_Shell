@@ -111,10 +111,10 @@ namespace Ffmpeg_With_Shell
             subinfo.Fps = textBox_MovFps.Text;
             subinfo.Time = textBox_MovTime.Text;
             subinfo.OutputPath = textBox_MovPath.Text;
-
+            //subinfo.InputPath = textBox_AssPath.Text;
             //复制字幕文件到临时目录，subtitles无法接受绝对路径
             localFilePath = textBox_AssPath.Text;
-            tempFilePath = String.Format("{0}{1}", System.AppDomain.CurrentDomain.BaseDirectory,"\\bin\\temp.ass");
+            tempFilePath = String.Format("{0}{1}", System.AppDomain.CurrentDomain.BaseDirectory,"\\temp.ass");
             if(File.Exists(tempFilePath))
             {
                 File.Delete(tempFilePath);
