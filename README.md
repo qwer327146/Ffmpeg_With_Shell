@@ -1,8 +1,12 @@
 # Ffmpeg_With_Shell
 
 给ffmpeg加了个shell  
-主要功能：将ass字幕转为mov输出  
+
 特别感谢  [**大fa师（CHFreezer）**](https://github.com/0x3f3f3f3f") 改进代码  
+
+
+## 主要功能
+将ass字幕转为mov视频并输出  
 
 ## 更新日志  
 
@@ -23,3 +27,8 @@
 2. 自动识别ass文件结束时间  
 3. process线程改为async  
 4. 以上3项功能由 [**大fa师（CHFreezer）**](https://github.com/0x3f3f3f3f") 实现  
+
+---
+## 软件界面
+
+<img src="readme/preview_blank.png" width = 640>
