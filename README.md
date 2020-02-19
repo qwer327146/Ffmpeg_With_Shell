@@ -31,4 +31,4 @@
 ---
 ## 软件界面
 
-<img src="readme/preview_blank.png" width = 640>
+<img src="readme/preview_blank.png" width = 800>
