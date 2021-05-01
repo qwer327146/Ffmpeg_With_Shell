@@ -2,7 +2,7 @@
 
 给ffmpeg加了个shell  
 
-特别感谢  [**大fa师（CHFreezer）**](https://github.com/0x3f3f3f3f") 改进代码  
+特别感谢  [**大fa师（CHFreezer）**](https://github.com/0x3f3f3f3f) 改进代码  
 
 
 ## 主要功能
